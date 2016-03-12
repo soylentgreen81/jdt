@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JDK 5 APT
+Bundle-SymbolicName: de.beukmann.jdt.jpa;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jdt.apt.core;bundle-version="3.3.101",
+ org.eclipse.jface.text;bundle-version="3.4.2",
+ org.eclipse.jdt.ui;bundle-version="3.4.2",
+ org.eclipse.jdt.core;bundle-version="3.4.4"
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: de.beukmann.jdt.jpa.Activator
+Import-Package: javax.persistence
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

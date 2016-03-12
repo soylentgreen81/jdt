@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension
+         point="org.eclipse.jdt.apt.core.annotationProcessorFactory">
+      <factories enableDefault="true">
+	      <factory
+	         class="de.beukmann.jdt.jpa.EntityProcessorFactory">
+	      </factory>
+      </factories>
+   </extension>
+   
+   	<extension
+ 	      point="org.eclipse.jdt.ui.quickFixProcessors">
+ 	   <quickFixProcessor
+ 	         class="de.beukmann.jdt.jpa.JpaQuickFixProcessor"
+ 	         id="de.beukmann.jdt.jpa.JpaQuickFixProcessor"
+ 	         name="MyQuickFixProcessor"
+ 	         requiredSourceLevel="1.5">
+ 	      <handledMarkerTypes>
+             <markerType
+                   id="org.eclipse.jdt.apt.core.nonreconcile.compile.problem">
+             </markerType>
+ 	         <markerType
+ 	               id="org.eclipse.jdt.apt.core.compile.problem">
+ 	         </markerType>
+ 	      </handledMarkerTypes>
+ 	   </quickFixProcessor>
+ 	</extension>
+   
+</plugin>
