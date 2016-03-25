@@ -59,29 +59,28 @@ public class EntityProcessorFactory implements AnnotationProcessorFactory {
 				for (FieldDeclaration member : td.getFields()) {
 					TypeMirror memberType = member.getType();
 						if (isCollection(memberType)) {
-							DeclaredType realMemberType = (DeclaredType) memberType;
-							DeclaredType firstTypeParameter = (DeclaredType) realMemberType.getActualTypeArguments().toArray()[0];
+							//Check if a collection is present
+							DeclaredType declaredMemberType = (DeclaredType) memberType;
+							DeclaredType firstTypeParameter = (DeclaredType) declaredMemberType.getActualTypeArguments().toArray()[0];
 							if (firstTypeParameter instanceof ClassDeclaration){ 
 								ClassDeclaration cd =  (ClassDeclaration) firstTypeParameter;
 								if (cd.getAnnotation(Entity.class) == null){
-									messager.printError(member.getPosition(), String.format("%s is not a declared @Entity", cd.getQualifiedName()));
+									messager.printError(cd.getPosition(), String.format("%s is not a declared @Entity", cd.getQualifiedName()));
 								}
 							}
-							
 						}
-					
-
 				}
 			}
 		}
 
-		public boolean isCollection(TypeMirror type) {
+		private boolean isCollection(TypeMirror type) {
 			TypeMirror erasedType = typeUtils.getErasure(type);
 			if (typeUtils.isSubtype(erasedType, collectionType)) {
 				return true;
 			}
 			return false;
 		}
+		
 	}
 
 }
